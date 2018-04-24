@@ -1,0 +1,36 @@
+{
+  parserClass="ria.intellij.parser.RiaParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Ria"
+  psiImplClassSuffix="Impl"
+  psiPackage="ria.intellij.psi"
+  psiImplPackage="ria.intellij.psi.impl"
+
+  elementTypeHolderClass="ria.intellij.psi.RiaTypes"
+  elementTypeClass="ria.intellij.psi.RiaElementType"
+  tokenTypeClass="ria.intellij.psi.RiaTokenType"
+
+  psiImplUtilClass="ria.intellij.psi.impl.RiaPsiImplUtil"
+}
+
+riaFile ::= item*
+
+item ::= (
+    WHITE_SPACE
+  | KEYWORD
+  | SEPARATOR
+  | COMMENT
+  | DOC_COMMENT
+  | IDENTIFIER
+  | OPERATOR
+  | NUMBER
+  | STRING
+  | bracket_expression)
+
+bracket_expression ::= (
+  PAR_LEFT item* PAR_RIGHT
+| BRACES_LEFT item* BRACES_RIGHT
+| BRACKET_LEFT item* BRACKET_RIGHT
+)
